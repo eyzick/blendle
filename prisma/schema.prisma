@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model BlendlePuzzle {
+  id           String           @id @default(uuid())
+  puzzleNumber Int              @unique
+  date         DateTime         @unique
+  difficulty   Int
+  colorAHex    String
+  colorBHex    String
+  targetHex    String
+  seed         String
+  meta         Json?
+  createdAt    DateTime         @default(now())
+  attempts     BlendleAttempt[]
+}
+
+model BlendlePlayer {
+  id         String           @id @default(uuid())
+  createdAt  DateTime         @default(now())
+  lastSeenAt DateTime         @updatedAt
+  attempts   BlendleAttempt[]
+}
+
+model BlendleAttempt {
+  id            String        @id @default(uuid())
+  playerId      String
+  puzzleId      String
+  guessHex      String
+  accuracy      Float
+  distance      Float
+  startedAt     DateTime
+  firstActionAt DateTime?
+  submittedAt   DateTime
+  durationMs    Int
+  createdAt     DateTime      @default(now())
+  player        BlendlePlayer @relation(fields: [playerId], references: [id])
+  puzzle        BlendlePuzzle @relation(fields: [puzzleId], references: [id])
+
+  @@unique([playerId, puzzleId])
+}

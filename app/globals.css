@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: 253 247 236;
+  --paper-strong: 247 238 218;
+  --ink: 23 32 51;
+  --ink-soft: 67 81 110;
+  --accent-coral: 241 113 96;
+  --accent-sky: 74 194 221;
+  --accent-gold: 232 180 86;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgb(var(--accent-coral) / 0.22), transparent 38%),
+    radial-gradient(circle at top right, rgb(var(--accent-sky) / 0.18), transparent 34%),
+    linear-gradient(180deg, rgb(var(--paper)) 0%, rgb(255 251 243) 100%);
+}
+
+body {
+  color: rgb(var(--ink));
+  font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+}
+
+::selection {
+  background: rgb(var(--accent-sky) / 0.28);
+}
+
+@layer components {
+  .blendle-panel {
+    @apply rounded-[2rem] border border-white/60 bg-white/70 p-5 shadow-glow backdrop-blur md:p-7;
+  }
+
+  .blendle-chip {
+    @apply inline-flex items-center rounded-full border border-slate-200/80 bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600;
+  }
+
+  .blendle-slider {
+    @apply h-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200/80;
+  }
+
+  .blendle-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 1.15rem;
+    width: 1.15rem;
+    border-radius: 9999px;
+    border: 3px solid white;
+    background: rgb(var(--ink));
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.18);
+  }
+
+  .blendle-slider::-moz-range-thumb {
+    height: 1.15rem;
+    width: 1.15rem;
+    border: 3px solid white;
+    border-radius: 9999px;
+    background: rgb(var(--ink));
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.18);
+  }
+
+  .blendle-gradient-border {
+    background:
+      linear-gradient(rgb(255 255 255 / 0.82), rgb(255 255 255 / 0.82)) padding-box,
+      linear-gradient(
+        135deg,
+        rgb(var(--accent-coral) / 0.7),
+        rgb(var(--accent-sky) / 0.7)
+      )
+      border-box;
+    border: 1px solid transparent;
+  }
+
+  .blendle-modal-card {
+    animation: popIn 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .blendle-confetti-piece {
+    position: absolute;
+    top: -12vh;
+    height: 0.95rem;
+    width: 0.6rem;
+    border-radius: 9999px;
+    opacity: 0;
+    animation-name: confettiFall;
+    animation-timing-function: cubic-bezier(0.2, 0.9, 0.3, 1);
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0) scale(0.94);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--confetti-drift, 0px), 108vh, 0) rotate(720deg);
+  }
+}
