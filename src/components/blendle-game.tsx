@@ -461,6 +461,46 @@ export function BlendleGame() {
           <section className="blendle-panel animate-fade-up [animation-delay:220ms]">
             <div className="grid gap-6 md:grid-cols-[1fr_0.95fr]">
               <div className="space-y-4">
+                <div className="sticky top-3 z-20 -mx-1 rounded-[1.6rem] border border-white/80 bg-[#fff8ec]/95 p-3 shadow-soft backdrop-blur lg:hidden">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0 flex-1 rounded-[1.2rem] bg-white/90 px-3 py-3 shadow-soft">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="h-10 w-10 shrink-0 rounded-2xl shadow-soft"
+                          style={{ backgroundColor: puzzle?.colorAHex ?? "#F97316" }}
+                        />
+                        <div className="min-w-0">
+                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                            Color A
+                          </p>
+                          <p className="truncate font-mono text-sm font-semibold text-slate-900">
+                            {puzzle?.colorAHex ?? "......"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="text-lg font-semibold text-slate-400">+</div>
+
+                    <div className="min-w-0 flex-1 rounded-[1.2rem] bg-white/90 px-3 py-3 shadow-soft">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="h-10 w-10 shrink-0 rounded-2xl shadow-soft"
+                          style={{ backgroundColor: puzzle?.colorBHex ?? "#14B8A6" }}
+                        />
+                        <div className="min-w-0">
+                          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                            Color B
+                          </p>
+                          <p className="truncate font-mono text-sm font-semibold text-slate-900">
+                            {puzzle?.colorBHex ?? "......"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
                     Pick the hue
